@@ -1,24 +1,22 @@
 import os
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate, Dropout, BatchNormalization, Activation
-from tensorflow.keras.optimizers import Adam
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-import zipfile
 import glob
 from PIL import Image
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.metrics import MeanIoU
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import glob
-import os
-from PIL import Image
-import numpy as np
-from sklearn.model_selection import train_test_split
 
 def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mode='grayscale'):
+    """
+    Load images and corresponding masks from the given folders, resize them,
+    convert them to grayscale if specified, and normalize the pixel values.
+
+    Parameters:
+    image_folder (str): Path to the folder containing images.
+    mask_folder (str): Path to the folder containing corresponding masks.
+    size (tuple): Target size for resizing the images and masks.
+    color_mode (str): If 'grayscale', convert images and masks to grayscale.
+
+    Returns:
+    tuple: A tuple containing two numpy arrays: one for images and one for masks.
+    """
     images = []
     masks = []
     image_files = sorted(glob.glob(image_folder + '/*.JPG')) + sorted(glob.glob(image_folder + '/*.jpg'))
@@ -57,9 +55,9 @@ def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mo
 
     return np.array(images), np.array(masks)
 
-# Paths to data folders
-image_folder = "/content/drive/MyDrive/Teeth/Radiographs"
-mask_folder = "/content/drive/MyDrive/Teeth/teeth_mask"
+# Paths to data folders, replace it with your paths
+image_folder = "/content/Teeth/Radiographs"
+mask_folder = "/content/Teeth/teeth_mask"
 
 images, masks = load_images_from_folder(image_folder, mask_folder)
 if len(images) > 0 and len(masks) > 0:
