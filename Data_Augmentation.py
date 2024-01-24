@@ -1,4 +1,3 @@
-
 # Define data generators with augmentation parameters
 def create_augmented_data_generator():
     data_gen_args = dict(rotation_range=10,
@@ -36,3 +35,4 @@ def generate_augmented_data(images, masks, batch_size):
 # Usage example
 batch_size = 16
 augmented_data_generator = generate_augmented_data(images_train, masks_train, batch_size)
+
