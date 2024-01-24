@@ -1,5 +1,9 @@
-model.fit(augmented_data_generator, steps_per_epoch=len(images_train) // batch_size, epochs=10)
 import matplotlib.pyplot as plt
+from tensorflow.keras.metrics import MeanIoU
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.model_selection import train_test_split
+
+model.fit(augmented_data_generator, steps_per_epoch=len(images_train) // batch_size, epochs=10)
 
 # Function to display images in a grid
 def plot_images(images_arr, titles_arr=None, figsize=(20, 10), rows=1):
