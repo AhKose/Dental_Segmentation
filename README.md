@@ -1,4 +1,3 @@
-![image](https://github.com/ahk19/Dental_Segmentation/assets/48156018/232ad4df-1ed8-4430-b95a-3421c19c2cde)# Tooth Image Segmentation Using U-Net
 
 This repository contains the implementation of a U-Net based deep learning model for the purpose of segmenting tooth images. U-Net is a convolutional neural network that excels in biomedical image segmentation tasks. This project demonstrates the entire pipeline from data preprocessing and augmentation to model training and evaluation.
 
