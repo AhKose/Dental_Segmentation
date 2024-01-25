@@ -32,3 +32,5 @@ NumPy
 scikit-learn
 PIL
 matplotlib
+
+![image](https://github.com/ahk19/Dental_Segmentation/assets/48156018/2a5b5653-afdc-4df6-8bb9-3afc96be6f5b)
