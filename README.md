@@ -1,5 +1,5 @@
 # Tooth Image Segmentation Using U-Net
-
+---
 ## Overview
 
 This repository contains the implementation of a U-Net-based deep learning model to segment tooth images. U-Net is a convolutional neural network that excels in biomedical image segmentation tasks. This project demonstrates the entire pipeline from data preprocessing and augmentation to model training and evaluation.
@@ -29,11 +29,11 @@ To evaluate the model and visualize the results, run:
 
 ## Dependencies
 
-__TensorFlow
-__NumPy
-__scikit-learn
-__PIL
-__matplotlib
+__[TensorFlow]
+__[NumPy]
+__[scikit-learn]
+__[PIL]
+__[matplotlib]
 
 ## Results
 
