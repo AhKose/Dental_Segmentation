@@ -1,11 +1,30 @@
 import matplotlib.pyplot as plt
-from tensorflow.keras.metrics import MeanIoU
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.metrics import Metric
 import tensorflow.keras.backend as K
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.optimizers import Adam
 
-model.fit(augmented_data_generator, steps_per_epoch=len(images_train) // batch_size, epochs=10)
+
+class DiceCoefficient(Metric):
+    def __init__(self, name='dice_coefficient', **kwargs):
+        super(DiceCoefficient, self).__init__(name=name, **kwargs)
+        self.dice = self.add_weight(name='dice', initializer='zeros')
+
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        y_true_f = K.flatten(y_true)
+        y_pred_f = K.flatten(y_pred)
+        intersection = K.sum(y_true_f * y_pred_f)
+        sum_ = K.sum(y_true_f) + K.sum(y_pred_f)
+        self.dice.assign(2. * intersection / (sum_ + K.epsilon()))
+
+    def result(self):
+        return self.dice
+
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min', restore_best_weights=True)
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy', DiceCoefficient()])
+history = model.fit(images_train, masks_train, batch_size=16, epochs=30, validation_split=0.1, shuffle=True, callbacks=[early_stopping])
 
 # Function to display images in a grid
 def plot_images(images_arr, titles_arr=None, figsize=(20, 10), rows=1):
@@ -24,7 +43,7 @@ def plot_images(images_arr, titles_arr=None, figsize=(20, 10), rows=1):
     plt.show()
 
 # Predict on test images
-predictions = model.predict(images_test, batch_size=batch_size)
+predictions = model.predict(images_test, batch_size=16)
 
 # Select a random sample from test images
 num_samples = 3  # Number of samples you want to visualize
@@ -40,23 +59,3 @@ for i in range(num_samples):
                 titles_arr=['Original Image', 'True Mask', 'Predicted Mask'],
                 figsize=(20, 5),
                 rows=1)
-
-class DiceCoefficient(Metric):
-    def __init__(self, name='dice_coefficient', **kwargs):
-        super(DiceCoefficient, self).__init__(name=name, **kwargs)
-        self.dice = self.add_weight(name='dice', initializer='zeros')
-
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        y_true_f = K.flatten(y_true)
-        y_pred_f = K.flatten(y_pred)
-        intersection = K.sum(y_true_f * y_pred_f)
-        sum_ = K.sum(y_true_f) + K.sum(y_pred_f)
-        self.dice.assign(2. * intersection / (sum_ + K.epsilon()))
-
-    def result(self):
-        return self.dice
-
-# Use it in your model
-model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy', DiceCoefficient()])
-history = model.fit(images_train, masks_train, batch_size=16, epochs=20, validation_split=0.1, shuffle=True)
-
