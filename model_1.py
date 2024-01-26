@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate, Dropout, BatchNormalization, Activation
-from tensorflow.keras.optimizers import Adam
 
 def conv_block(input_tensor, num_filters):
     x = Conv2D(num_filters, (3, 3), padding='same')(input_tensor)
@@ -59,7 +58,6 @@ def unet(input_size=(256, 256, 1), num_filters=64, dropout=0.5):
     outputs = Conv2D(1, (1, 1), activation='sigmoid')(c9)
 
     model = Model(inputs=[inputs], outputs=[outputs])
-    model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy'])
     return model
 
 model = unet()
