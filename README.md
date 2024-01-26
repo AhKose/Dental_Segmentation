@@ -35,6 +35,8 @@ scikit-learn
 PIL
 matplotlib
 
+## Results
+
 ![image](https://github.com/ahk19/Dental_Segmentation/assets/48156018/2a5b5653-afdc-4df6-8bb9-3afc96be6f5b)
 ![image](https://github.com/ahk19/Dental_Segmentation/assets/48156018/a4b546df-1dd8-4206-9746-461cf9071972)
 ![image](https://github.com/ahk19/Dental_Segmentation/assets/48156018/26f283d5-358a-4857-a624-623cd1f3bba4)
