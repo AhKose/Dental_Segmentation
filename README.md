@@ -13,7 +13,9 @@ Training and Evaluation: Train the model on tooth images and evaluate its perfor
 ## Project Structure
 
 data_preprocessing.py: Contains functions for loading and preprocessing the images and masks.
+
 model.py: Defines the U-Net architecture.
+
 train.py: Contains the training loop for the model, evaluating and visualizing the model's performance.
 
 ## Usage
