@@ -29,11 +29,11 @@ To evaluate the model and visualize the results, run:
 
 ## Dependencies
 
-TensorFlow
-NumPy
-scikit-learn
-PIL
-matplotlib
+__TensorFlow
+__NumPy
+__scikit-learn
+__PIL
+__matplotlib
 
 ## Results
 
