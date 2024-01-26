@@ -22,9 +22,15 @@ class DiceCoefficient(Metric):
     def result(self):
         return self.dice
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min', restore_best_weights=True)
+early_stopping = EarlyStopping(monitor='val_loss', patience=3, verbose=1, mode='min', restore_best_weights=True)
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy', DiceCoefficient()])
-history = model.fit(images_train, masks_train, batch_size=16, epochs=30, validation_split=0.1, shuffle=True, callbacks=[early_stopping])
+
+try:
+  history = model.fit(images_train, masks_train, batch_size=16, epochs=50, validation_split=0.1, shuffle=True, callbacks=[early_stopping])
+except RuntimeError as e:
+    print(f"Runtime error during model training: {e}")
+except Exception as e:
+    print(f"An error occurred during model training: {e}")
 
 # Function to display images in a grid
 def plot_images(images_arr, titles_arr=None, figsize=(20, 10), rows=1):
