@@ -27,7 +27,6 @@ def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mo
 
     for image_filename in image_files:
         basename = os.path.basename(image_filename)
-        # Change the extension to lowercase to match the mask files
         basename = os.path.splitext(basename)[0] + '.jpg'
         mask_filename = os.path.join(mask_folder, basename)
 
@@ -60,8 +59,9 @@ def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mo
 image_folder = "/content/Teeth/Radiographs"
 mask_folder = "/content/Teeth/teeth_mask"
 
-images, masks = load_images_from_folder(image_folder, mask_folder)
-if len(images) > 0 and len(masks) > 0:
+try:
+    images, masks = load_images_from_folder(image_folder, mask_folder)
     images_train, images_test, masks_train, masks_test = train_test_split(images, masks, test_size=0.2)
-else:
-    print("No matching image/mask pairs found.")
+
+except Exception as e:
+    print(f"Error loading images: {e}")
