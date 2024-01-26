@@ -13,7 +13,8 @@ Training and Evaluation: Train the model on tooth images and evaluate its perfor
 ## Project Structure
 
 data_preprocessing.py: Contains functions for loading and preprocessing the images and masks.
-model.py: Defines the U-Net architecture.
+model_1.py: Defines the U-Net architecture.(First model for simple tasks)
+model_2.py: Defines the U-Net architecture.(Second model for more complex tasks with more advanced design)
 train.py: Contains the training loop for the model, evaluating and visualizing the model's performance.
 
 ## Usage
@@ -21,9 +22,9 @@ train.py: Contains the training loop for the model, evaluating and visualizing t
 Data Source
 This project utilizes the Tufts Dental Database, available on Kaggle: Tufts Dental Database[https://www.kaggle.com/datasets/deepologylab/tufts-dental-database]. Before running the project, please download this dataset and ensure the paths in the data_preprocessing.py file are correctly set to where you've stored the data.
 
-To define the model, execute the following command:
+To define the 1st model, execute the following command (To use the second model, the number can be adjusted to 2 for the complex model):
 ```
-python model.py
+python model_1.py
 ```
 To evaluate the model and visualize the results, run:
 ```
