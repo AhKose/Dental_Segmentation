@@ -22,7 +22,7 @@ class DiceCoefficient(Metric):
     def result(self):
         return self.dice
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=3, verbose=1, mode='min', restore_best_weights=True)
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min', restore_best_weights=True)
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy', DiceCoefficient()])
 
 try:
