@@ -22,6 +22,7 @@ Data Source
 This project utilizes the Tufts Dental Database, available on Kaggle: Tufts Dental Database[https://www.kaggle.com/datasets/deepologylab/tufts-dental-database]. Before running the project, please download this dataset and ensure the paths in the data_preprocessing.py file are correctly set to where you've stored the data.
 
 To define the model, execute the following command:
+
 // python model.py
 
 To evaluate the model and visualize the results, run:
