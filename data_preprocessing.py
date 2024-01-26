@@ -2,6 +2,7 @@ import os
 import numpy as np
 import glob
 from PIL import Image
+from sklearn.model_selection import train_test_split
 
 def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mode='grayscale'):
     """
