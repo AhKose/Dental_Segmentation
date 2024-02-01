@@ -5,7 +5,7 @@ from tensorflow.keras.metrics import Metric
 import tensorflow.keras.backend as K
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.optimizers import Adam
-
+from data_preprocessing import load_images_from_folder
 
 class DiceCoefficient(Metric):
     def __init__(self, name='dice_coefficient', **kwargs):
