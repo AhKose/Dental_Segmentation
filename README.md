@@ -20,7 +20,7 @@ train.py: Contains the training loop for the model, evaluating and visualizing t
 ## Usage
 
 Data Source
-This project utilizes the Tufts Dental Database, available on Kaggle: Tufts Dental Database[https://www.kaggle.com/datasets/deepologylab/tufts-dental-database]. Before running the project, please download this dataset and ensure the paths in the data_preprocessing.py file are correctly set to where you've stored the data.
+This project utilizes the Tufts Dental Database, available on Kaggle: Tufts Dental Database[https://www.kaggle.com/datasets/deepologylab/tufts-dental-database]. Before running the project, please download this dataset and ensure the paths in the train_evaluate.py file are correctly set to where you've stored the data.
 
 To define the 1st model, execute the following command (To use the second model, the number can be adjusted to 2 for the complex model):
 ```
@@ -28,7 +28,7 @@ python model_1.py
 ```
 To evaluate the model and visualize the results, run:
 ```
-python evaluate.py
+python train_evaluate.py
 ```
 ## Dependencies
 
