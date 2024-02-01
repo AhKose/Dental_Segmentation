@@ -54,14 +54,3 @@ def load_images_from_folder(image_folder, mask_folder, size=(256, 256), color_mo
             print(f"Missing mask for image: {image_filename}")
 
     return np.array(images), np.array(masks)
-
-# Paths to data folders, replace it with your paths
-image_folder = "/content/Teeth/Radiographs"
-mask_folder = "/content/Teeth/teeth_mask"
-
-try:
-    images, masks = load_images_from_folder(image_folder, mask_folder)
-    images_train, images_test, masks_train, masks_test = train_test_split(images, masks, test_size=0.2)
-
-except Exception as e:
-    print(f"Error loading images: {e}")
