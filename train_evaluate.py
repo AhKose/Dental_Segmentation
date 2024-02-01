@@ -5,6 +5,7 @@ from tensorflow.keras.metrics import Metric
 import tensorflow.keras.backend as K
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.optimizers import Adam
+from data_preprocessing import load_images_from_folder
 from model_1 import model #To use model_2 change the import statement
 
 class DiceCoefficient(Metric):
@@ -21,6 +22,17 @@ class DiceCoefficient(Metric):
 
     def result(self):
         return self.dice
+
+# Paths to data folders, replace it with your paths
+image_folder = "/content/Teeth/Radiographs"
+mask_folder = "/content/Teeth/teeth_mask"
+
+try:
+    images, masks = load_images_from_folder(image_folder, mask_folder)
+    images_train, images_test, masks_train, masks_test = train_test_split(images, masks, test_size=0.2)
+
+except Exception as e:
+    print(f"Error loading images: {e}")
 
 early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min', restore_best_weights=True)
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy', DiceCoefficient()])
