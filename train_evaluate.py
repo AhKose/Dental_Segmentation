@@ -1,12 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.metrics import Metric
 import tensorflow.keras.backend as K
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.optimizers import Adam
-from data_preprocessing import load_images_from_folder
+from model_1 import model #To use model_2 change the import statement
 
 class DiceCoefficient(Metric):
     def __init__(self, name='dice_coefficient', **kwargs):
